@@ -10,6 +10,7 @@
 let AudioManager = require( "AudioManager" );
 let EventManager = require( "EventManager" );
 let ViewManager = require( "ViewManager" );
+let StoreManager = require( "StoreManager" );
 
 let Global = {
     // 声音管理器
@@ -18,6 +19,8 @@ let Global = {
     EventManager: EventManager.getInstance(),
     // 视图管理器
     ViewManager: ViewManager.getInstance(),
+    // 存储管理器
+    StoreManager: StoreManager.getInstance(),
 
 };
 

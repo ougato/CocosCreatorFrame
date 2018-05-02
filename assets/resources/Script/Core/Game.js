@@ -8,8 +8,8 @@
  */
 
 let DefView = require( "DefView" );
-let DefStorage = require( "DefStorage" );
-let Storage = require( "Storage" );
+let DefStore = require( "DefStore" );
+let Utils = require( "Utils" );
 
 // 实例化对象
 let instance = null;
@@ -40,7 +40,7 @@ let Game = cc.Class({
         // 游戏ID
         this.m_nGameId = 0;
         // 游戏语言
-        this.m_nLanguage = 0;
+        this.m_strLanguage = "";
         // ...
 
     },
@@ -66,7 +66,12 @@ let Game = cc.Class({
      * 初始化语言
      */
     initLanguage() {
-        let language = Storage.getInstance().get( DefStorage.KEY.Language );
+        let language = G.StoreManager.get( DefStore.KEY.Language );
+        if( Utils.isNull( language ) ) {
+            language = "CN"; // I18N文件夹里面的文件名
+            G.StoreManager.set( DefStore.KEY.Language, language );
+        }
+        this.setLanguage( language );
     },
 
     /**
@@ -80,24 +85,7 @@ let Game = cc.Class({
      * 初始化网络
      */
     initNet() {
-        // 初始化网络模块
-        require("NetSocket");
-        // 初始化 PB
-        G_asyncLoadProto();
-        NetSocket.on( "__Connect", (eventName) => {
-            cc.log( "eventName = " + eventName );
-            // let player = new PB.Player();
-            // player.id = 1000;
-            // player.name = 'jiuzhou';
-            // player.enterTime = Date.now();
-            // NetSocket.send( PB.ActionCode.EnterRoot, player,(protoData)=>{
-            //     let data = PB.Player.decode(protoData);
-            //     cc.log( "data : " + data );
-            //     cc.log( "data.id : " + data.id );
-            //     cc.log( "data.name : " + data.name );
-            //     cc.log( "data.enterTime : " + data.enterTime );
-            // } );
-        });
+
     },
 
     /**
@@ -105,6 +93,22 @@ let Game = cc.Class({
      */
     initRes() {
 
+    },
+
+    /**
+     * 获取语言
+     * @returns {string|*}
+     */
+    getLanguage() {
+        return this.m_strLanguage;
+    },
+
+    /**
+     * 设置语言
+     * @param language {string} I18N文件夹里面的文件名
+     */
+    setLanguage( language ) {
+        this.m_strLanguage = language;
     },
 
     /**

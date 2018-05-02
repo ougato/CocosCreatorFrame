@@ -4,7 +4,7 @@
  */
 
 /**
- * 语言（English）
+ * Language（English）
  */
 
 // log of text
@@ -12,22 +12,17 @@ const LOG = {
     // system - 0 - 999
     0: "",
 
-    // game - 1000 - 1999
-    1000: "",
-
-    // xxx - 2000 - 2999
-
 };
 
 // game in view of text
 const GAME = {
-    // dice - 0 - 999
+    // login/lobby - 0 - 999
     0: "",
 
-    // hoodle - 1000 - 1999
+    // dice - 1000 - 1999
     1000: "",
 
-    // xxx - 2000 - 2999
+    // hoodle - 2000 - 2999
     2000: "",
 };
 

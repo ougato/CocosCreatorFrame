@@ -33,15 +33,9 @@ const SCENE_PATH = "Scene/";
  * 场景
  */
 const SCENE = {
-    Loading: "Loading",
+    WelCome: "WelCome",
+    Update: "Update",
     Login: "Login",
-    Platform: "Platform",
-
-    // 骰子游戏
-    DiceLobby: "DiceLobby",
-    DicePlay: "DicePlay",
-
-    // 弹珠游戏
 
 };
 
@@ -49,18 +43,6 @@ const SCENE = {
  * PREFAB
  */
 const PREFAB = {
-    Loading: "Loading",
-    Yellow: "Yellow",
-    Demo: "Demo",
-    Audio: "Audio",
-    Event: "Event",
-    View: "View",
-
-    // 骰子游戏
-    DiceShare: "Dice/DiceShare",
-    DiceTips: "Dice/DiceTips",
-    DiceSelectAge: "Dice/DiceSelectAge",
-    DiceModeMelee : "Dice/DiceModeMelee",
 
 };
 
