@@ -8,10 +8,7 @@
  */
 
 let DefView = require( "DefView" );
-let EncryptJS = require( "EncryptJS" );
 let Utils = require( "Utils" );
-let SECRET_KEY = "OuCheng";
-let readline = require( "readline" );
 
 // 实例化对象
 let instance = null;
@@ -82,7 +79,7 @@ let StoreManager = cc.Class({
         // 如果数据有加密，一定要解密后再返回，否则数据会出问题
         let value = cc.sys.localStorage.getItem( key )
         if( !Utils.isNull( value ) ) {
-            value =  JSON.parse( EncryptJS.decrypt( value, SECRET_KEY, 256 ) );
+            value =  JSON.parse( value );
         }
         return value;
     },
@@ -96,8 +93,7 @@ let StoreManager = cc.Class({
         // 允许加密数据 封装他的原因就是为了调用时不让开发者手动写加密
         if( !Utils.isNull( data ) ) {
             let jsonData = JSON.stringify( data );
-            let encryptedData = EncryptJS.encrypt( jsonData, SECRET_KEY, 256 );
-            cc.sys.localStorage.setItem( key, encryptedData );
+            cc.sys.localStorage.setItem( key, jsonData );
         }
     },
 

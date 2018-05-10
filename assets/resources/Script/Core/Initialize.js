@@ -9,6 +9,7 @@
 
 let UIBase = require( "UIBase" );
 let Global = require( "Global" );
+let Config = require( "Config" );
 let Game = require( "Game" );
 
 cc.Class({
@@ -31,6 +32,7 @@ cc.Class({
      */
     init() {
         this.initGlobal();
+        this.initConfig();
         this.initGame();
     },
 
@@ -39,6 +41,13 @@ cc.Class({
      */
     initGlobal() {
         window.G = Global;
+    },
+
+    /**
+     * 初始化配置
+     */
+    initConfig() {
+        Config.getInstance().init();
     },
 
     /**

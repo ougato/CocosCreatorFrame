@@ -10,6 +10,7 @@
 let DefView = require( "DefView" );
 let DefStore = require( "DefStore" );
 let Utils = require( "Utils" );
+let Update = require( "Update" );
 
 // 实例化对象
 let instance = null;
@@ -39,9 +40,6 @@ let Game = cc.Class({
     ctor() {
         // 游戏ID
         this.m_nGameId = 0;
-        // 游戏语言
-        this.m_strLanguage = "";
-        // ...
 
     },
 
@@ -49,29 +47,15 @@ let Game = cc.Class({
      * 初始化游戏需要的模块
      */
     init() {
-        // 初始化语言
-        this.initLanguage();
         // 初始化SDK
         this.initSDK();
         // 初始化网络
         this.initNet();
         // 初始化资源
         this.initRes();
+        // 初始化热更新
+        this.initUpdate();
 
-        // 运行游戏
-        this.run();
-    },
-
-    /**
-     * 初始化语言
-     */
-    initLanguage() {
-        let language = G.StoreManager.get( DefStore.KEY.Language );
-        if( Utils.isNull( language ) ) {
-            language = "CN"; // I18N文件夹里面的文件名
-            G.StoreManager.set( DefStore.KEY.Language, language );
-        }
-        this.setLanguage( language );
     },
 
     /**
@@ -96,26 +80,36 @@ let Game = cc.Class({
     },
 
     /**
-     * 获取语言
-     * @returns {string|*}
+     * 初始化热更新
      */
-    getLanguage() {
-        return this.m_strLanguage;
+    initUpdate() {
+
     },
 
     /**
-     * 设置语言
-     * @param language {string} I18N文件夹里面的文件名
+     * 获取游戏ID
+     * @returns {number|*}
      */
-    setLanguage( language ) {
-        this.m_strLanguage = language;
+    getGameId() {
+        return this.m_nGameId;
+    },
+
+    /**
+     * 设置游戏ID
+     * @param id {number} 游戏ID
+     */
+    setGameId( id ) {
+        this.m_nGameId = id;
     },
 
     /**
      * 运行
      */
-    run() {
-        G.ViewManager.replaceScene( DefView.SCENE.Login );
+    run( sceneName ) {
+        if( Utils.isNull( sceneName ) ) {
+            sceneName = Config.getInstance().getDefaultScene();
+        }
+        G.ViewManager.replaceScene( sceneName );
     },
 
 });

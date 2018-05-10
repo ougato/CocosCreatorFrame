@@ -9,7 +9,9 @@
 const KEY = {
     // 语言
     Language: "Language",
-
+    // 版本
+    Version: "Version",
+    // ...
 };
 
 module.exports = {
