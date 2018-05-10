@@ -8,7 +8,6 @@
  * @type {Function}
  */
 
-let Utils = require( "Utils" );
 let DefLog = require( "DefLog" );
 
 let Log = {
@@ -50,7 +49,7 @@ let Log = {
      */
     error( text, type ) {
         let suffix = "";
-        if( !Utils.isNull( type ) ) {
+        if( !G.Utils.isNull( type ) ) {
             suffix = this.getText( type );
         }
         cc.error( text + suffix );
@@ -61,7 +60,7 @@ let Log = {
      */
     warn( text, type ) {
         let suffix = "";
-        if( !Utils.isNull( type ) ) {
+        if( !G.Utils.isNull( type ) ) {
             suffix = this.getText( type );
         }
         cc.warn( text + suffix );
@@ -72,7 +71,7 @@ let Log = {
      */
     print( text, type ) {
         let suffix = "";
-        if( !Utils.isNull( type ) ) {
+        if( !G.Utils.isNull( type ) ) {
             suffix = this.getText( type );
         }
         cc.log( text + suffix );

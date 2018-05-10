@@ -9,7 +9,6 @@
 
 let ViewBase = require( "ViewBase" );
 let DefView = require( "DefView" );
-let Utils = require( "Utils" );
 
 let ViewPrefab = cc.Class({
     extends: ViewBase,
@@ -34,13 +33,13 @@ let ViewPrefab = cc.Class({
      * @param zorder {*|number} [] 传入的层级
      */
     initData( path, data, zorder ) {
-        if( !Utils.isNull( path ) ) {
+        if( !G.Utils.isNull( path ) ) {
             this.m_strPath = path;
         }
-        if( !Utils.isNull( data ) ) {
+        if( !G.Utils.isNull( data ) ) {
             this.m_objData = data;
         }
-        if( !Utils.isNull( zorder ) ) {
+        if( !G.Utils.isNull( zorder ) ) {
             this.m_nZOrder = zorder;
         }
     },

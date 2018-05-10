@@ -8,7 +8,6 @@
  * @type {Function}
  */
 
-let Utils = require( "Utils" );
 let DefAudio = require( "DefAudio" );
 
 let AudioBase = cc.Class({
@@ -33,13 +32,13 @@ let AudioBase = cc.Class({
     },
 
     initData( path, loop, volume ) {
-        if( !Utils.isNull( path ) ) {
+        if( !G.Utils.isNull( path ) ) {
             this.m_strPath = path;
         }
-        if( !Utils.isNull( loop ) ) {
+        if( !G.Utils.isNull( loop ) ) {
             this.m_bIsLoop = loop;
         }
-        if( !Utils.isNull( volume ) ) {
+        if( !G.Utils.isNull( volume ) ) {
             this.m_fVolume = volume;
         }
     },

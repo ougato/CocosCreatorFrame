@@ -9,7 +9,6 @@
 
 let DefView = require( "DefView" );
 let DefStore = require( "DefStore" );
-let Utils = require( "Utils" );
 let Update = require( "Update" );
 
 // 实例化对象
@@ -106,7 +105,7 @@ let Game = cc.Class({
      * 运行
      */
     run( sceneName ) {
-        if( Utils.isNull( sceneName ) ) {
+        if( G.Utils.isNull( sceneName ) ) {
             sceneName = Config.getInstance().getDefaultScene();
         }
         G.ViewManager.replaceScene( sceneName );

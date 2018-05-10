@@ -7,8 +7,6 @@
  * 链表节点
  */
 
-let Utils = require( "Utils" );
-
 let ListNode = cc.Class({
     /**
      * 构造
@@ -101,8 +99,8 @@ let List = cc.Class({
      */
     getFirst() {
         let firstNode = this.m_node;
-        while( !Utils.isNull( firstNode ) ) {
-            if( Utils.isNull( firstNode.getPrev() ) ) {
+        while( !G.Utils.isNull( firstNode ) ) {
+            if( G.Utils.isNull( firstNode.getPrev() ) ) {
                 break;
             }
             firstNode = firstNode.getPrev();
@@ -116,8 +114,8 @@ let List = cc.Class({
      */
     getLast() {
         let lastNode = this.m_node;
-        while( !Utils.isNull( lastNode ) ) {
-            if( Utils.isNull( lastNode.getNext() ) ) {
+        while( !G.Utils.isNull( lastNode ) ) {
+            if( G.Utils.isNull( lastNode.getNext() ) ) {
                 break;
             }
             lastNode = lastNode.getNext();
@@ -132,7 +130,7 @@ let List = cc.Class({
     getSize() {
         let node = this.getFirst();
         let size = 0;
-        while( !Utils.isNull( node ) ) {
+        while( !G.Utils.isNull( node ) ) {
             ++size;
             node = node.getNext();
         }
@@ -143,7 +141,7 @@ let List = cc.Class({
      * 是否空链表
      */
     isEmpty() {
-        return Utils.isNull( this.m_node );
+        return G.Utils.isNull( this.m_node );
     },
 
     /**
@@ -188,7 +186,7 @@ let List = cc.Class({
         } else {
             if( about < 0 ) {
                 let prevNode = node.getPrev();
-                if( !Utils.isNull( prevNode ) ) {
+                if( !G.Utils.isNull( prevNode ) ) {
                     prevNode.setNext( newNode );
                     newNode.setPrev( prevNode );
                 }
@@ -196,7 +194,7 @@ let List = cc.Class({
                 newNode.setNext( node );
             } else {
                 let nextNode = node.getNext();
-                if( !Utils.isNull( nextNode ) ) {
+                if( !G.Utils.isNull( nextNode ) ) {
                     nextNode.setPrev( newNode );
                     newNode.setNext( nextNode );
                 }
@@ -222,10 +220,10 @@ let List = cc.Class({
     insert() {
         let arg = arguments;
 
-        if( Utils.isObject( arg[0] ) && ( Utils.isNumber( arg[1] ) || Utils.isNull( arg[1] ) ) ) {
+        if( Utils.isObject( arg[0] ) && ( Utils.isNumber( arg[1] ) || G.Utils.isNull( arg[1] ) ) ) {
             // 通过数据插入到前后链表
             this._insert1( arg[0], arg[1] );
-        } else if( Utils.isObject( arg[0] ) && Utils.isObject( arg[1] ) && ( Utils.isNumber( arg[2] ) || Utils.isNull( arg[2] ) ) ) {
+        } else if( Utils.isObject( arg[0] ) && Utils.isObject( arg[1] ) && ( Utils.isNumber( arg[2] ) || G.Utils.isNull( arg[2] ) ) ) {
             // 通过节点来插入数据
             if( Utils.isObject( arg[0] ) && Utils.isNumber( arg[2] ) ) {
                 this._insert2( arg[0], arg[1], arg[2] );
@@ -241,14 +239,14 @@ let List = cc.Class({
         let firstNode = this.getFirst();
         let delNode = this.find( data );
 
-        if( Utils.isNull( delNode ) ) {
+        if( G.Utils.isNull( delNode ) ) {
             return ;
         }
 
         let prevNode = delNode.getPrev();
-        if( Utils.isNull( prevNode ) ) {
+        if( G.Utils.isNull( prevNode ) ) {
             let nextNode = delNode.getNext();
-            if( !Utils.isNull( nextNode ) ) {
+            if( !G.Utils.isNull( nextNode ) ) {
                 nextNode.setPrev( null );
             }
         } else {
@@ -256,9 +254,9 @@ let List = cc.Class({
         }
 
         let nextNode = delNode.getNext();
-        if( Utils.isNull( nextNode ) ) {
+        if( G.Utils.isNull( nextNode ) ) {
             let prevNode = delNode.getPrev();
-            if( !Utils.isNull( prevNode ) ) {
+            if( !G.Utils.isNull( prevNode ) ) {
                 prevNode.setNext( null );
             }
         } else {
@@ -270,7 +268,7 @@ let List = cc.Class({
         }
 
         // 临界点
-        if( Utils.isNull( delNode.getNext() ) && Utils.isNull( delNode.getPrev() ) ) {
+        if( G.Utils.isNull( delNode.getNext() ) && G.Utils.isNull( delNode.getPrev() ) ) {
             this.m_node = null;
         }
 
@@ -284,7 +282,7 @@ let List = cc.Class({
      */
     find( data ) {
         let node = this.getFirst();
-        while( !Utils.isNull( node ) ) {
+        while( !G.Utils.isNull( node ) ) {
             if( node.getData() === data ) {
                 break;
             }
@@ -298,7 +296,7 @@ let List = cc.Class({
      */
     clear() {
         let node = this.getFirst();
-        while( !Utils.isNull( node ) ) {
+        while( !G.Utils.isNull( node ) ) {
             let nextNode = node.getNext();
             node.destroy();
             node = nextNode;
@@ -311,7 +309,7 @@ let List = cc.Class({
      */
     forEach( callback ) {
         let node = this.m_node;
-        while( !Utils.isNull( node ) ) {
+        while( !G.Utils.isNull( node ) ) {
             callback( node );
             node = node.getNext();
         }

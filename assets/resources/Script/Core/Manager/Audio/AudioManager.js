@@ -10,7 +10,6 @@
 
 let AudioMusic = require( "AudioMusic" );
 let AudioSound = require( "AudioSound" );
-let Utils = require( "Utils" );
 
 // 实例化对象
 let instance = null;
@@ -37,7 +36,7 @@ let AudioManager = cc.Class({
          * 销毁实例
          */
         destroy() {
-            if( !Utils.isNull( instance ) ){
+            if( !G.Utils.isNull( instance ) ){
                 instance.destroy();
             }
         },
@@ -72,7 +71,7 @@ let AudioManager = cc.Class({
      * @param volume {float} 音量
      */
     playMusic( path, loop, volume ) {
-        if( !Utils.isNull( this.m_objMusic ) ) {
+        if( !G.Utils.isNull( this.m_objMusic ) ) {
             this.m_objMusic.stop();
             this.m_objMusic = null;
         }
@@ -106,7 +105,7 @@ let AudioManager = cc.Class({
      */
     stopMusic() {
         let audio = this.m_objMusic;
-        if( !Utils.isNull( audio ) ) {
+        if( !G.Utils.isNull( audio ) ) {
             audio.stop();
             this.m_objMusic = null;
         }
@@ -118,7 +117,7 @@ let AudioManager = cc.Class({
      */
     stopSound( id ) {
         let audio = this.m_mapSound.get( id );
-        if( !Utils.isNull( audio ) ) {
+        if( !G.Utils.isNull( audio ) ) {
             audio.stop();
             this.m_mapSound.splice(id, 1);
         }
@@ -129,7 +128,7 @@ let AudioManager = cc.Class({
      */
     pauseMusic() {
         let audio = this.m_objMusic;
-        if( !Utils.isNull( audio ) ) {
+        if( !G.Utils.isNull( audio ) ) {
             audio.pause();
         }
     },
@@ -140,7 +139,7 @@ let AudioManager = cc.Class({
      */
     pauseSound( id ) {
         let audio = this.m_mapSound.get( id );
-        if( !Utils.isNull( audio ) ) {
+        if( !G.Utils.isNull( audio ) ) {
             audio.pause();
         }
     },
@@ -150,7 +149,7 @@ let AudioManager = cc.Class({
      */
     resumeMusic() {
         let audio = this.m_objMusic;
-        if( !Utils.isNull( audio ) ) {
+        if( !G.Utils.isNull( audio ) ) {
             audio.resume();
         }
     },
@@ -161,7 +160,7 @@ let AudioManager = cc.Class({
      */
     resumeSound( id ) {
         let audio = this.m_mapSound.get( id );
-        if( !Utils.isNull( audio ) ) {
+        if( !G.Utils.isNull( audio ) ) {
             audio.resume();
         }
     },

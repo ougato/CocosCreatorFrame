@@ -15,7 +15,6 @@ let List = require( "List" );
 let ViewPrefab = require( "ViewPrefab" );
 let ViewScene = require( "ViewScene" );
 let DefView = require( "DefView" );
-let Utils = require( "Utils" );
 
 // 实例化对象
 let instance = null;
@@ -42,7 +41,7 @@ let ViewManager = cc.Class({
          * 销毁实例
          */
         destroy() {
-            if( !Utils.isNull( instance ) ){
+            if( !G.Utils.isNull( instance ) ){
                 instance.destroy();
             }
         },
@@ -93,7 +92,7 @@ let ViewManager = cc.Class({
      */
     openPrefab( pathName, data, zorder, callback ){
         let oldView = this.m_mapPrefab.get( pathName );
-        if( !Utils.isNull( oldView ) ) {
+        if( !G.Utils.isNull( oldView ) ) {
             let lastView = this.m_listPrefab.getLast();
             if( lastView === oldView ) {
                 if( !lastView.getNode().active ) {
@@ -102,10 +101,10 @@ let ViewManager = cc.Class({
                 return ;
             }
         }
-        zorder = Utils.isNull( zorder ) ? DefView.ZORDER.UI : zorder;
+        zorder = G.Utils.isNull( zorder ) ? DefView.ZORDER.UI : zorder;
         let view = new ViewPrefab( DefView.PREFAB_PATH + pathName, data, zorder );
         view.load( function( node ) {
-            if( !Utils.isNull( oldView ) ) {
+            if( !G.Utils.isNull( oldView ) ) {
                 this.closePrefab( pathName );
             }
             this.m_mapPrefab.set( pathName, view );
@@ -116,7 +115,7 @@ let ViewManager = cc.Class({
             this.m_objPrefab = view;
             view.refresh();
             // 预制体加载完毕 告诉 调用者
-            if( !Utils.isNull( callback ) ) {
+            if( !G.Utils.isNull( callback ) ) {
                 callback( this.m_objPrefab );
             }
         }.bind( this ) );
@@ -128,7 +127,7 @@ let ViewManager = cc.Class({
      */
     closePrefab( pathName ){
         let view = this.m_mapPrefab.get( pathName );
-        if( !Utils.isNull( view ) ) {
+        if( !G.Utils.isNull( view ) ) {
             view.destroy();
             this.m_mapPrefab.delete( pathName );
             this.m_listPrefab.delete( view );
@@ -158,7 +157,7 @@ let ViewManager = cc.Class({
      */
     replaceScene( name, data, callback ){
         cc.director.loadScene( name, function( _, scene ) {
-            if( !Utils.isNull( this.m_objScene ) ) {
+            if( !G.Utils.isNull( this.m_objScene ) ) {
                 this.m_objScene.destroy();
                 this.m_objScene = null;
                 this.m_objPrefab = null;
@@ -180,7 +179,7 @@ let ViewManager = cc.Class({
             view.refresh();
             this.m_objScene = view;
             // 场景加载完毕 告诉 调用者
-            if( !Utils.isNull( callback ) ) {
+            if( !G.Utils.isNull( callback ) ) {
                 callback( this.m_objScene );
             }
         }.bind( this ) );

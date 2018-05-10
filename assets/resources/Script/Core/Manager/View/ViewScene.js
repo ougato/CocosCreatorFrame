@@ -8,7 +8,6 @@
  */
 
 let ViewBase = require( "ViewBase" );
-let Utils = require( "Utils" );
 
 let ViewScene = cc.Class({
     extends: ViewBase,
@@ -32,10 +31,10 @@ let ViewScene = cc.Class({
      * @param data
      */
     initData( name, data ) {
-        if( !Utils.isNull( name ) ) {
+        if( !G.Utils.isNull( name ) ) {
             this.m_strPath = name;
         }
-        if( !Utils.isNull( data ) ) {
+        if( !G.Utils.isNull( data ) ) {
             this.m_objData = data;
         }
     },

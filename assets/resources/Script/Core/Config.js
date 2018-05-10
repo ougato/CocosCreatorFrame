@@ -4,8 +4,7 @@
  */
 
 let DefView = require( "DefView" );
-let Utils = require( "Utils" );
-let DefStore = require( "DefStore" )
+let DefStore = require( "DefStore" );
 
 // 实例化对象
 let instance = null;
@@ -32,7 +31,7 @@ let Config = cc.Class({
          * 销毁实例
          */
         destroy() {
-            if( !Utils.isNull( instance ) ){
+            if( !G.Utils.isNull( instance ) ){
                 instance.destroy();
             }
         },
@@ -44,15 +43,17 @@ let Config = cc.Class({
      */
     ctor() {
         // 语言
-        this.m_strLanguage = "CN";
+        this.language = "CN";
         // 是否调试
-        this.m_bIsDebug = false;
+        this.isDebug = false;
         // 是否热更新
-        this.m_bIsHotUpdate = false;
+        this.isHotUpdate = false;
         // 版本
-        this.m_strVersion = "0.0.0.0";
+        this.version = "0.0.0.0";
         // 默认场景
-        this.m_strDefaultScene = "Login";
+        this.defaultScene = "Login";
+        // 国际语言
+        this.i18n = null;
     },
 
     /**
@@ -60,15 +61,17 @@ let Config = cc.Class({
      */
     destroy() {
         // 语言
-        this.m_strLanguage = "";
+        this.language = "";
         // 是否调试
-        this.m_bIsDebug = false;
+        this.isDebug = false;
         // 是否热更新
-        this.m_bIsHotUpdate = false;
+        this.isHotUpdate = false;
         // 版本
-        this.m_strVersion = "";
+        this.version = "";
         // 默认场景
-        this.m_strDefaultScene = "";
+        this.defaultScene = "";
+        // 国际语言
+        this.i18n = null;
     },
 
     /**
@@ -77,6 +80,7 @@ let Config = cc.Class({
     init() {
         this.initLanguage();
         this.initVersion();
+        this.initI18N();
     },
 
     /**
@@ -84,7 +88,7 @@ let Config = cc.Class({
      */
     initLanguage() {
         let language = G.StoreManager.get( DefStore.KEY.Language );
-        if( Utils.isNull( language ) ) {
+        if( G.Utils.isNull( language ) ) {
             language =  this.getLanguage(); // I18N文件夹里面的文件名（默认）
             G.StoreManager.set( DefStore.KEY.Language, language );
         }
@@ -96,7 +100,7 @@ let Config = cc.Class({
      */
     initVersion() {
         let language = G.StoreManager.get( DefStore.KEY.Version );
-        if( Utils.isNull( language ) ) {
+        if( G.Utils.isNull( language ) ) {
             language = this.getVersion(); // 版本号（默认）
             G.StoreManager.set( DefStore.KEY.Version, language );
         }
@@ -104,11 +108,19 @@ let Config = cc.Class({
     },
 
     /**
+     * 初始化国际语言
+     */
+    initI18N() {
+        let i18n = require( this.getLanguage() );
+        this.setI18N( i18n );
+    },
+
+    /**
      * 获取语言
      * @returns {string|*}
      */
     getLanguage() {
-        return this.m_strLanguage;
+        return this.language;
     },
 
     /**
@@ -116,7 +128,7 @@ let Config = cc.Class({
      * @param language {string} I18N文件夹里面的文件名
      */
     setLanguage( language ) {
-        this.m_strLanguage = language;
+        this.language = language;
     },
 
     /**
@@ -124,7 +136,7 @@ let Config = cc.Class({
      * @returns {boolean|*}
      */
     getIsDebug() {
-        return this.m_bIsDebug;
+        return this.isDebug;
     },
 
     /**
@@ -132,7 +144,7 @@ let Config = cc.Class({
      * @param isDebug {boolean}
      */
     setIsDebug( isDebug ) {
-        this.m_bIsDebug = isDebug;
+        this.isDebug = isDebug;
     },
 
     /**
@@ -140,7 +152,7 @@ let Config = cc.Class({
      * @returns {boolean|*}
      */
     getIsHotUpdate() {
-        return this.m_bIsHotUpdate;
+        return this.isHotUpdate;
     },
 
     /**
@@ -148,7 +160,7 @@ let Config = cc.Class({
      * @param isHotUpdate {boolean}
      */
     setIsHotUpdate( isHotUpdate ) {
-        this.m_bIsHotUpdate = isHotUpdate;
+        this.isHotUpdate = isHotUpdate;
     },
 
     /**
@@ -156,7 +168,7 @@ let Config = cc.Class({
      * @returns {string|*}
      */
     getVersion() {
-        return this.m_strVersion;
+        return this.version;
     },
 
     /**
@@ -164,7 +176,7 @@ let Config = cc.Class({
      * @param version {string}
      */
     setVersion( version ) {
-        this.m_strVersion = version;
+        this.version = version;
     },
 
     /**
@@ -172,7 +184,7 @@ let Config = cc.Class({
      * @returns {string|string}
      */
     getDefaultScene() {
-        return this.m_strDefaultScene;
+        return this.defaultScene;
     },
 
     /**
@@ -180,10 +192,26 @@ let Config = cc.Class({
      * @param sceneName
      */
     setDefaultScene( sceneName ) {
-        if( Utils.isNull( sceneName ) ) {
-             sceneName = this.m_strDefaultScene;
+        if( G.Utils.isNull( sceneName ) ) {
+             sceneName = this.defaultScene;
         }
-        this.m_strDefaultScene = sceneName;
+        this.defaultScene = sceneName;
+    },
+
+    /**
+     * 获取国际语言
+     * @returns {null}
+     */
+    getI18N() {
+        return this.i18n;
+    },
+
+    /**
+     * 设置国际语言
+     * @param i18n
+     */
+    setI18N( i18n ) {
+        this.i18n = i18n;
     },
 });
 

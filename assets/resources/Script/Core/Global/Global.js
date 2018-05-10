@@ -12,7 +12,14 @@ let EventManager = require( "EventManager" );
 let ViewManager = require( "ViewManager" );
 let StoreManager = require( "StoreManager" );
 
+let Config = require( "Config" );
+let Utils = require( "Utils" );
+let Game = require( "Game" );
+
 let Global = {
+    // 工具
+    Utils: Utils,
+
     // 声音管理器
     AudioManager: AudioManager.getInstance(),
     // 事件管理器
@@ -21,6 +28,11 @@ let Global = {
     ViewManager: ViewManager.getInstance(),
     // 存储管理器
     StoreManager: StoreManager.getInstance(),
+
+    // 配置
+    Config: Config.getInstance(),
+    // 游戏
+    Game: Game.getInstance(),
 
 };
 

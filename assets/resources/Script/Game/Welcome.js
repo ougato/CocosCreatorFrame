@@ -8,7 +8,6 @@
  */
 
 let UIBase = require( "UIBase" );
-let
 
 cc.Class({
     extends: UIBase,

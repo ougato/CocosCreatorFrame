@@ -8,7 +8,6 @@
  */
 
 let DefView = require( "DefView" );
-let Utils = require( "Utils" );
 
 // 实例化对象
 let instance = null;
@@ -34,7 +33,7 @@ let StoreManager = cc.Class({
          * 销毁实例
          */
         destroy() {
-            if( !Utils.isNull( instance ) ){
+            if( !G.Utils.isNull( instance ) ){
                 instance.destroy();
             }
         },
@@ -78,7 +77,7 @@ let StoreManager = cc.Class({
     get( key ) {
         // 如果数据有加密，一定要解密后再返回，否则数据会出问题
         let value = cc.sys.localStorage.getItem( key )
-        if( !Utils.isNull( value ) ) {
+        if( !G.Utils.isNull( value ) ) {
             value =  JSON.parse( value );
         }
         return value;
@@ -91,7 +90,7 @@ let StoreManager = cc.Class({
      */
     set( key, data ) {
         // 允许加密数据 封装他的原因就是为了调用时不让开发者手动写加密
-        if( !Utils.isNull( data ) ) {
+        if( !G.Utils.isNull( data ) ) {
             let jsonData = JSON.stringify( data );
             cc.sys.localStorage.setItem( key, jsonData );
         }

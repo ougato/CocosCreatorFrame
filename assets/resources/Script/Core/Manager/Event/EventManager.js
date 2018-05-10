@@ -35,7 +35,7 @@ let EventManager = cc.Class({
          * 销毁实例
          */
         destroy() {
-            if( !Utils.isNull( instance ) ){
+            if( !G.Utils.isNull( instance ) ){
                 instance.destroy();
             }
         },

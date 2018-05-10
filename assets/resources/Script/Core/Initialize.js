@@ -9,7 +9,7 @@
 
 let UIBase = require( "UIBase" );
 let Global = require( "Global" );
-let Config = require( "Config" );
+let Config = require( "Config" )
 let Game = require( "Game" );
 
 cc.Class({

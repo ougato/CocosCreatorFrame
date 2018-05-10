@@ -7,7 +7,6 @@
  * 事件基类
  */
 
-let Utils = require( "Utils" );
 let List = require( "List" );
 
 let EventBase = cc.Class({
@@ -36,11 +35,11 @@ let EventBase = cc.Class({
      * @private
      */
     _register1( script, eventId ) {
-        if( Utils.isNull( this.m_mapEventList.get( eventId ) ) ) {
+        if( G.Utils.isNull( this.m_mapEventList.get( eventId ) ) ) {
             this.m_mapEventList.set( eventId, new List() );
         }
         let list = this.m_mapEventList.get( eventId );
-        if( Utils.isNull( list.find( script ) ) ) {
+        if( G.Utils.isNull( list.find( script ) ) ) {
             list.insert( script );
         }
     },
@@ -90,7 +89,7 @@ let EventBase = cc.Class({
      */
     _unRegister1( script, eventId ) {
         let list = this.m_mapEventList.get( eventId );
-        if( !Utils.isNull( list ) && !Utils.isNull( list.find( script ) ) ) {
+        if( !G.Utils.isNull( list ) && !G.Utils.isNull( list.find( script ) ) ) {
             list.delete( script );
             if( list.isEmpty() ) {
                 this.m_mapEventList.delete( eventId );
@@ -148,7 +147,7 @@ let EventBase = cc.Class({
      */
     onEvent( event ) {
         let list = this.m_mapEventList.get( event.getId() );
-        if( !Utils.isNull( list ) ) {
+        if( !G.Utils.isNull( list ) ) {
             list.forEach( function( node ) {
                 let data = node.getData();
                 data.onEvent( event );
