@@ -43,7 +43,7 @@ let Config = cc.Class({
      */
     ctor() {
         // 语言
-        this.language = "CN";
+        this.language = "ZH";
         // 是否调试
         this.isDebug = false;
         // 是否热更新
@@ -99,12 +99,12 @@ let Config = cc.Class({
      * 初始化版本
      */
     initVersion() {
-        let language = G.StoreManager.get( DefStore.KEY.Version );
-        if( G.Utils.isNull( language ) ) {
-            language = this.getVersion(); // 版本号（默认）
-            G.StoreManager.set( DefStore.KEY.Version, language );
+        let version = G.StoreManager.get( DefStore.KEY.Version );
+        if( G.Utils.isNull( version ) ) {
+            version = this.getVersion(); // 版本号（默认）
+            G.StoreManager.set( DefStore.KEY.Version, version );
         }
-        this.setVersion( language );
+        this.setVersion( version );
     },
 
     /**
@@ -213,6 +213,7 @@ let Config = cc.Class({
     setI18N( i18n ) {
         this.i18n = i18n;
     },
+
 });
 
 module.exports = Config;

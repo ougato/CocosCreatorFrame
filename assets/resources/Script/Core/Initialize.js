@@ -9,8 +9,6 @@
 
 let UIBase = require( "UIBase" );
 let Global = require( "Global" );
-let Config = require( "Config" )
-let Game = require( "Game" );
 
 cc.Class({
     extends: UIBase,
@@ -33,6 +31,7 @@ cc.Class({
     init() {
         this.initGlobal();
         this.initConfig();
+        this.initNet();
         this.initGame();
     },
 
@@ -47,14 +46,21 @@ cc.Class({
      * 初始化配置
      */
     initConfig() {
-        Config.getInstance().init();
+        G.Config.getInstance().init();
+    },
+
+    /**
+     * 初始化网络
+     */
+    initNet() {
+        G.Net.getInstance().init();
     },
 
     /**
      * 初始化游戏
      */
     initGame() {
-        Game.getInstance().init();
+        G.Game.getInstance().init();
     },
 
     // update (dt) {},

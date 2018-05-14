@@ -10,6 +10,7 @@
 let DefView = require( "DefView" );
 let DefStore = require( "DefStore" );
 let Update = require( "Update" );
+let WebSocket = require( "WebSocket" );
 
 // 实例化对象
 let instance = null;
@@ -37,6 +38,8 @@ let Game = cc.Class({
      * 构造
      */
     ctor() {
+        // 网络Socket
+        this.m_objSocket = null;
         // 游戏ID
         this.m_nGameId = 0;
 
@@ -48,8 +51,6 @@ let Game = cc.Class({
     init() {
         // 初始化SDK
         this.initSDK();
-        // 初始化网络
-        this.initNet();
         // 初始化资源
         this.initRes();
         // 初始化热更新
@@ -61,13 +62,6 @@ let Game = cc.Class({
      * 初始化SDK
      */
     initSDK() {
-
-    },
-
-    /**
-     * 初始化网络
-     */
-    initNet() {
 
     },
 
@@ -106,7 +100,7 @@ let Game = cc.Class({
      */
     run( sceneName ) {
         if( G.Utils.isNull( sceneName ) ) {
-            sceneName = Config.getInstance().getDefaultScene();
+            sceneName = G.Config.getDefaultScene();
         }
         G.ViewManager.replaceScene( sceneName );
     },

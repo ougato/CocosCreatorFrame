@@ -12,9 +12,10 @@ let EventManager = require( "EventManager" );
 let ViewManager = require( "ViewManager" );
 let StoreManager = require( "StoreManager" );
 
-let Config = require( "Config" );
 let Utils = require( "Utils" );
+let Config = require( "Config" );
 let Game = require( "Game" );
+let WebSocket = require( "WebSocket" );
 
 let Global = {
     // 工具
@@ -33,6 +34,8 @@ let Global = {
     Config: Config.getInstance(),
     // 游戏
     Game: Game.getInstance(),
+    // 网络
+    Net: WebSocket.getInstance(),
 
 };
 
